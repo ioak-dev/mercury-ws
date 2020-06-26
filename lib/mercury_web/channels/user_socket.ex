@@ -17,9 +17,9 @@ defmodule MercuryWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   @impl true
-  def connect(%{"auth_token" => auth_token}, socket, _connect_info) do
+  def connect(%{"auth_token" => auth_token, "space" => space}, socket, _connect_info) do
     case Mercury.Guardian.decode_and_verify(auth_token, %{}, secret: "jwtsecret") do
-      { :ok, claims } -> {:ok, assign(socket, :user, claims["sub"] |> Poison.decode!)}
+      { :ok, claims } -> {:ok, assign(socket, user: claims["sub"] |> Poison.decode!, space: space)}
       { :error, reason } -> {:error, reason}
       nil -> {:error, "Unauthorized"}
     end

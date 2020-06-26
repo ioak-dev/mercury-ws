@@ -3,6 +3,7 @@ defmodule MercuryWeb.Schema do
 
     alias MercuryWeb.AccountsResolver
     alias MercuryWeb.BlogResolver
+    alias MercuryWeb.MessagestreamResolver
 
     import_types(MercuryWeb.Schema.Types)
 
@@ -28,6 +29,13 @@ defmodule MercuryWeb.Schema do
         field :comments, list_of(:comment) do
             arg :post_id, non_null(:id)
             resolve &BlogResolver.comments/3
+        end
+        field :personmessages, :personmessage_paginated do
+            arg :self_id, non_null(:id)
+            arg :other_id, non_null(:id)
+            arg :page_size, non_null(:integer)
+            arg :last_index, non_null(:integer)
+            resolve &MessagestreamResolver.personmessages/3
         end
     end
 

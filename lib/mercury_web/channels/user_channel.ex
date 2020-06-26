@@ -1,5 +1,6 @@
 defmodule MercuryWeb.UserChannel do
   use MercuryWeb, :channel
+  alias Mercury.Messagestream
 
   # intercept ["new_message"]
 
@@ -12,15 +13,29 @@ defmodule MercuryWeb.UserChannel do
   end
 
   def handle_in("new_message", payload, socket) do
-    IO.puts(":::::::::::::::::::::::::::::")
-    MercuryWeb.Endpoint.broadcast_from!(self(), "user:" <> payload["to"], "new_message", payload)
-    broadcast socket, "new_message", payload
+    space = socket.assigns[:space]
+    user = socket.assigns[:user]
+    {:ok, created_record} = Messagestream.create_personmessage(space, %{
+          "sender" => user["id"], 
+          "receiver" => String.to_integer(payload["receiver"]), 
+          "content" => payload["content"]
+        })
+    message = %{
+      "sender" => created_record.sender,
+      "receiver" => created_record.receiver,
+      "content" => created_record.content,
+      "inserted_at" => created_record.inserted_at
+    }
+    MercuryWeb.Endpoint.broadcast_from!(self(), "user:" <> payload["receiver"], "new_message", message)
+    # if String.to_integer(payload["receiver"]) != user["id"] do
+      broadcast socket, "new_message", message
+    # end
     {:noreply, socket}
   end
 
   def handle_out("new_message", payload, socket) do
     IO.puts("[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]")
-    payload |> IO.inspect
+    payload
     # socket.assigns[:user]["id"] |> IO.inspect
     # broadcast socket, "new_message", payload
     # {:reply, {:ok, %{response: payload}}, socket}
