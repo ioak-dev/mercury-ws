@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Configure your database
-config :appnamehere, Appnamehere.Repo,
+config :mercury, Mercury.Repo,
   url: "postgres://hdfivydl:oMINPAk7kXZ9v-qJFXP2uZbCSEum2SlQ@ruby.db.elephantsql.com:5432/hdfivydl",
   show_sensitive_data_on_connection_error: true,
   pool_size: 2
@@ -12,7 +12,7 @@ config :appnamehere, Appnamehere.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :appnamehere, AppnamehereWeb.Endpoint,
+config :mercury, MercuryWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -54,10 +54,10 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 
-config :appnamehere, Appnamehere.Guardian,
-  issuer: "appnamehere",
+config :mercury, Mercury.Guardian,
+  issuer: "mercury",
   secret_key: "jwtsecret",
   allowed_algos: ["HS256"] # optional
 
-config :appnamehere,
+config :mercury,
   oneauth_api_url: "http://127.0.0.1:8020"

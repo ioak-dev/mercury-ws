@@ -1,4 +1,4 @@
-defmodule Appnamehere.DataCase do
+defmodule Mercury.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Appnamehere.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Appnamehere.DataCase, async: true`, although
+  by setting `use Mercury.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,20 +18,20 @@ defmodule Appnamehere.DataCase do
 
   using do
     quote do
-      alias Appnamehere.Repo
+      alias Mercury.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Appnamehere.DataCase
+      import Mercury.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Appnamehere.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Mercury.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Appnamehere.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Mercury.Repo, {:shared, self()})
     end
 
     :ok

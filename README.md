@@ -1,10 +1,10 @@
-# Appnamehere
+# Mercury
 
 To start your Phoenix server:
 
 - Install dependencies with `mix deps.get`
 - Create and migrate your database with `mix ecto.setup`
-- Migrate ecto for each space by running `mix ecto.migrate --prefix appnamehere_<spaceid>`
+- Migrate ecto for each space by running `mix ecto.migrate --prefix mercury_<spaceid>`
 - Start Phoenix endpoint with `mix phx.server`
 - Generate a new domain (comment) in the context (Blog) with the plural database name (comments) `mix phx.gen.json Blog Comment comments description:text post_id:references:posts user_id:references:users`
 

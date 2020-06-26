@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :appnamehere,
-  ecto_repos: [Appnamehere.Repo]
+config :mercury,
+  ecto_repos: [Mercury.Repo]
 
 # Configures the endpoint
-config :appnamehere, AppnamehereWeb.Endpoint,
+config :mercury, MercuryWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "AfDpXSLUxEmFbyvmBxvN9UnQM3jl+Skoj29I23F3+aI5bbTFzigp6Hvb+VuRlOhZ",
-  render_errors: [view: AppnamehereWeb.ErrorView, accepts: ~w(json), layout: false],
-  pubsub_server: Appnamehere.PubSub,
+  render_errors: [view: MercuryWeb.ErrorView, accepts: ~w(json), layout: false],
+  pubsub_server: Mercury.PubSub,
   live_view: [signing_salt: "aq3n41M3"]
 
 # Configures Elixir's Logger

@@ -1,4 +1,4 @@
-defmodule Appnamehere.Repo.Migrations.CreateUsers do
+defmodule Mercury.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

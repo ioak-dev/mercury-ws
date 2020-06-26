@@ -1,9 +1,9 @@
-defmodule Appnamehere.MixProject do
+defmodule Mercury.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :appnamehere,
+      app: :mercury,
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Appnamehere.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Appnamehere.Application, []},
+      mod: {Mercury.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

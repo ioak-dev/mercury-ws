@@ -1,4 +1,4 @@
-defmodule Appnamehere.Repo.Migrations.CreatePosts do
+defmodule Mercury.Repo.Migrations.CreatePosts do
   use Ecto.Migration
 
   def change do
